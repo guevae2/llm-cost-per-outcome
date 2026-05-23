@@ -34,7 +34,19 @@ export default function About() {
               <span>Built by AgentNoah BUILD ⚡</span>
             </h3>
             <p className="text-xs text-slate-400">
-              This system was completely built and tested using AgentNoah's BYOL build pipeline.
+              This calculator was built end-to-end using AgentNoah&apos;s
+              BYOL BUILD pipeline on Google Antigravity (Gemini 3.5 Flash){" "}
+              in one evening.{" "}
+              <a
+                href="https://agentnoah.dev/blog/guided-build-flash35-evidence"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-400 hover:text-emerald-300 underline"
+              >
+                Read the full case study →
+              </a>{" "}
+              including the 6 fabrications the review loop caught before
+              this site went live.
             </p>
           </div>
           <a

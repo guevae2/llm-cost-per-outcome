@@ -134,8 +134,14 @@ export default function About() {
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-semibold text-slate-200">AgentNoah Benchmark</td>
-                  <td className="px-4 py-3 text-slate-400">
-                    AgentNoah OWASP K=3 security sweep
+                  <td className="px-4 py-3 text-blue-400 hover:underline">
+                    <a
+                      href="https://agentnoah.dev/blog/3-model-byol-evidence"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      AgentNoah OWASP K=3 security sweep
+                    </a>
                   </td>
                   <td className="px-4 py-3">2026-05-23</td>
                 </tr>

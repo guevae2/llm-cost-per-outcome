@@ -131,3 +131,18 @@ Workaround applied: none
 - OWASP Overrides implemented: yes, Opus/Sonnet/Pro/Flash overrides live
 - Dynamic Retry Rates: yes, dropdown auto-populates slider defaults
 - Jest unit tests: 9 passed successfully
+
+## Day 1 — Polish Pass (2026-05-23)
+
+### Phase 17: fix
+Verdict: PROCEED
+Files touched: app/page.tsx, app/about/page.tsx, BUILD_LOG.md
+What I learned: P-1 slider middle-tick label now dynamically reflects the active task's defaultRetryRate (1.1 to 1.6) instead of the stale "1.3x (Default)". P-2 About page now honestly explains that the 'aider' source badge means "calibrated to Aider patterns" rather than "directly measured" — preserves discipline for skeptical readers.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Polish Pass summary
+- Slider label dynamic: yes
+- Provenance honesty clause added to About page: yes
+- All 9 Jest tests still pass: yes
+- Final commit pushed to origin/main: 387e77f532ed3cc6466f8fc535e6791b2c36d98d

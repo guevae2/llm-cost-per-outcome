@@ -139,6 +139,18 @@ export default function About() {
           </h2>
           <ul className="list-disc pl-5 space-y-2 text-slate-400">
             <li>
+              <strong>Token estimate provenance:</strong> Cells tagged{" "}
+              <code className="text-blue-400">aider</code> are calibrated to typical
+              patterns from the Aider coding leaderboard — they are our best
+              estimate of typical input/output token usage per model per task, NOT
+              direct per-cell measurements (Aider does not publish per-task token
+              counts in this format). Cells tagged{" "}
+              <code className="text-purple-400">agentnoah-owasp</code> for the
+              security-audit task come from AgentNoah's K=3 BYOL benchmark. PRs
+              welcome at github.com/guevae2/llm-cost-per-outcome/issues to refine
+              specific cells with real measurements.
+            </li>
+            <li>
               <strong>Token estimates vary:</strong> Real usage varies wildly depending on prompt templates, system instructions, few-shot examples, and framework overhead. The estimates are static baseline measurements.
             </li>
             <li>

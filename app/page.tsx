@@ -151,7 +151,7 @@ export default function Home() {
             />
             <div className="flex justify-between text-[10px] text-slate-500 font-medium">
               <span>0.5x (Optimistic)</span>
-              <span>1.3x (Default)</span>
+              <span>{activeCategory?.defaultRetryRate.toFixed(1)}x (Task Default)</span>
               <span>3.0x (Pessimistic)</span>
             </div>
           </div>

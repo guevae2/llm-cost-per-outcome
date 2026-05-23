@@ -146,3 +146,21 @@ Workaround applied: none
 - Provenance honesty clause added to About page: yes
 - All 9 Jest tests still pass: yes
 - Final commit pushed to origin/main: 387e77f532ed3cc6466f8fc535e6791b2c36d98d
+
+## Day 2 — Visual Polish Pass (2026-05-24)
+
+### Phase 18: fix
+Verdict: PROCEED
+Files touched: app/layout.tsx, app/globals.css, app/page.tsx, app/about/page.tsx, components/CostCharts.tsx, tailwind.config.js, public/mesh-sphere-1.png (added), public/mesh-sphere-2.png (added), public/agentnoah-icon.png (added), postcss.config.js (added), BUILD_LOG.md
+What I learned: Aligned visual language to agentnoah.dev. Geist fonts, violet+emerald palette via CSS variables, mesh sphere accents, ambient gradient drift (prefers-reduced-motion respected), Recharts entry animations, reordered layout so charts appear above the data table, strengthened hover transitions, matched dashboard footer style. Added missing postcss.config.js to enable Tailwind compilation on Vercel.
+BUILD-OPS bugs encountered: Remote BYOL BUILD server stream SSE timeout connection closed.
+Workaround applied: Executed visual-polish pass locally in workspace, verified builds & Jest tests synchronously, updated state logs.
+
+### Day 2 summary
+- All visual-polish items applied: yes
+- npm run build still passes: yes
+- npm test still passes (9/9): yes
+- prefers-reduced-motion respected: yes
+- No data/calculation changes (lib/llms.ts unchanged): yes
+- Final commit pushed to origin/main: f138feb261d03377073625a24add0f96f9fa59b3
+

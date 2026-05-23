@@ -6,12 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'monospace'],
+      },
       colors: {
-        darkBg: "#0B0F19",
-        panelBg: "#161C2C",
-        accentTeal: "#10B981",
-        frontierColor: "#8B5CF6",
-        reasoningColor: "#F59E0B"
+        // Keeping only dynamic overrides or basic defaults if needed, but clearing legacy custom colors as requested
       }
     },
   },

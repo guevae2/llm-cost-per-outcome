@@ -1,5 +1,9 @@
 import './globals.css';
 import React from 'react';
+import { Geist, Geist_Mono } from "next/font/google";
+
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata = {
   metadataBase: new URL('https://llm-cost-per-outcome.vercel.app'),
@@ -38,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-darkBg text-slate-100 min-h-screen flex flex-col">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="bg-[var(--background)] text-[var(--foreground)] min-h-screen flex flex-col font-sans antialiased">
         {children}
       </body>
     </html>

@@ -38,6 +38,7 @@ interface CostChartsProps {
 export default function CostCharts({ data, selectedModels, sliderValue }: CostChartsProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [comparisonPair, setComparisonPair] = useState<string[]>([]);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -46,11 +47,20 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
     } else {
       setComparisonPair(selectedModels);
     }
+
+    // Detect prefers-reduced-motion
+    if (typeof window !== 'undefined') {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      setReduceMotion(mediaQuery.matches);
+      const listener = (e: MediaQueryListEvent) => setReduceMotion(e.matches);
+      mediaQuery.addEventListener('change', listener);
+      return () => mediaQuery.removeEventListener('change', listener);
+    }
   }, [selectedModels]);
 
   if (!isMounted) {
     return (
-      <div className="h-[400px] flex items-center justify-center text-slate-400 bg-panelBg/20 border border-slate-800/50 rounded-xl">
+      <div className="h-[400px] flex items-center justify-center text-slate-400 bg-[var(--surface)] border border-[var(--border)] rounded-xl">
         Loading interactive visualizations...
       </div>
     );
@@ -74,7 +84,7 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
     if (active && payload && payload.length) {
       const dataPoint = payload[0].payload;
       return (
-        <div className="bg-[#161C2C]/95 border border-slate-700 p-3 rounded-lg shadow-xl text-xs">
+        <div className="bg-[var(--surface-light)] border border-[var(--border-light)] backdrop-blur-md p-3 rounded-lg shadow-xl text-xs">
           <p className="font-semibold text-white mb-1">{dataPoint.name}</p>
           <p className="text-emerald-400 font-medium">Outcome Cost: ${dataPoint.cost.toFixed(4)}</p>
           <p className="text-slate-400">Quality score: {dataPoint.quality}%</p>
@@ -89,7 +99,7 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
     if (active && payload && payload.length) {
       const dataPoint = payload[0].payload;
       return (
-        <div className="bg-[#161C2C]/95 border border-slate-700 p-3 rounded-lg shadow-xl text-xs">
+        <div className="bg-[var(--surface-light)] border border-[var(--border-light)] backdrop-blur-md p-3 rounded-lg shadow-xl text-xs">
           <p className="font-semibold text-white mb-1">{dataPoint.name}</p>
           <p className="text-emerald-400 font-medium">Outcome Cost: ${dataPoint.cost.toFixed(4)}</p>
           <p className="text-amber-400">Quality score: {dataPoint.quality}%</p>
@@ -103,18 +113,26 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
   return (
     <div className="space-y-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-panelBg/40 border border-slate-800/80 p-6 rounded-2xl">
+        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md">
           <h3 className="text-lg font-bold text-white mb-1">Cost Per Successful Outcome</h3>
           <p className="text-xs text-slate-400 mb-6">Real financial cost including retry multiplier. Lower is better.</p>
           
           <div className="h-[320px] relative w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={sortedByCost} layout="vertical" margin={{ left: 10, right: 30, top: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" horizontal={true} vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" horizontal={true} vertical={false} />
                 <XAxis type="number" stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
                 <YAxis type="category" dataKey="name" stroke="#64748B" fontSize={10} width={100} />
                 <Tooltip content={<CustomBarTooltip />} />
-                <Bar dataKey="cost" fill="#10B981" radius={[0, 4, 4, 0]} barSize={14} />
+                <Bar
+                  dataKey="cost"
+                  fill="#8b5cf6"
+                  radius={[0, 4, 4, 0]}
+                  barSize={14}
+                  isAnimationActive={!reduceMotion}
+                  animationDuration={800}
+                  animationEasing="ease-out"
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -142,19 +160,26 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
           </div>
         </div>
 
-        <div className="bg-panelBg/40 border border-slate-800/80 p-6 rounded-2xl">
+        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md">
           <h3 className="text-lg font-bold text-white mb-1">Value Curve: Cost vs. Quality</h3>
           <p className="text-xs text-slate-400 mb-6">X = Quality Score, Y = Cost. Bubble size = Retry Rate. Aim for bottom-right.</p>
           
           <div className="h-[320px] relative w-full">
             <ResponsiveContainer width="100%" height="100%">
               <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
-                <XAxis type="number" dataKey="quality" name="Quality Score" unit="%" stroke="#64748B" fontSize={10} domain={[70, 90]} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" />
+                <XAxis type="number" dataKey="quality" name="Quality Score" unit="%" stroke="#64748B" fontSize={10} domain={[70, 100]} />
                 <YAxis type="number" dataKey="cost" name="Outcome Cost" stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
                 <ZAxis type="number" dataKey="retryRate" range={[50, 400]} />
                 <Tooltip content={<CustomScatterTooltip />} />
-                <Scatter name="Models" data={data} fill="#8B5CF6" />
+                <Scatter
+                  name="Models"
+                  data={data}
+                  fill="#8b5cf6"
+                  isAnimationActive={!reduceMotion}
+                  animationDuration={800}
+                  animationEasing="ease-out"
+                />
               </ScatterChart>
             </ResponsiveContainer>
           </div>
@@ -186,14 +211,14 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-panelBg/40 border border-slate-800/80 p-6 rounded-2xl">
+        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md">
           <h3 className="text-lg font-bold text-white mb-1">Retry Rate Sensitivity Analysis</h3>
           <p className="text-xs text-slate-400 mb-6">X-axis: Retry Rate Multiplier. Y-axis: $/outcome. Shows cost drift behavior.</p>
           
           <div className="h-[320px] relative w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={sensitivityData} margin={{ top: 10, right: 30, left: 10, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" />
                 <XAxis dataKey="rate" stroke="#64748B" fontSize={10} />
                 <YAxis stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
                 <Tooltip />
@@ -208,6 +233,9 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
                       stroke={colors[index % colors.length]}
                       activeDot={{ r: 4 }}
                       strokeWidth={2}
+                      isAnimationActive={!reduceMotion}
+                      animationDuration={800}
+                      animationEasing="ease-out"
                     />
                   );
                 })}
@@ -241,7 +269,7 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
           </div>
         </div>
 
-        <div className="bg-panelBg/40 border border-slate-800/80 p-6 rounded-2xl">
+        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
             <div>
               <h3 className="text-lg font-bold text-white mb-1">Cost Stack-up: Input vs Output</h3>
@@ -274,13 +302,29 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
           <div className="h-[320px] relative w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={comparisonData} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" />
                 <XAxis dataKey="name" stroke="#64748B" fontSize={10} />
                 <YAxis stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
                 <Tooltip />
                 <Legend wrapperStyle={{ fontSize: 10 }} />
-                <Bar dataKey="inputCost" name="Input Base Cost" stackId="a" fill="#3B82F6" />
-                <Bar dataKey="outputCost" name="Output Base Cost" stackId="a" fill="#10B981" />
+                <Bar
+                  dataKey="inputCost"
+                  name="Input Base Cost"
+                  stackId="a"
+                  fill="#8b5cf6"
+                  isAnimationActive={!reduceMotion}
+                  animationDuration={800}
+                  animationEasing="ease-out"
+                />
+                <Bar
+                  dataKey="outputCost"
+                  name="Output Base Cost"
+                  stackId="a"
+                  fill="#10b981"
+                  isAnimationActive={!reduceMotion}
+                  animationDuration={800}
+                  animationEasing="ease-out"
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>

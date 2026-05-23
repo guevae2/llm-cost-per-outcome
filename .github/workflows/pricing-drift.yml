@@ -1,0 +1,46 @@
+name: Pricing Drift Detection
+
+on:
+  schedule:
+    - cron: '0 9 1 * *' # Monthly cron (1st of every month, 9am UTC)
+  workflow_dispatch:
+
+jobs:
+  check-drift:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Run Pricing Scraper
+        id: scrape
+        run: node scripts/pricing-drift.js
+
+      - name: Check for Git status variations
+        id: git-check
+        run: |
+          git status --porcelain
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pricing Drift Pull Request
+        if: steps.git-check.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: pricing-drift — sync updated vendor prices"
+          title: "Automatic Pricing Drift Sync"
+          body: "The monthly price scraper detected pricing drift on vendor pages. Review files and merge to live calculator."
+          branch: "chore/pricing-drift-sync"
+          base: "main"

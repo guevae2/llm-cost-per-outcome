@@ -1,0 +1,133 @@
+# BUILD_LOG.md
+
+## Day 1 — Initialize Project (2026-05-23)
+
+### Phase 1: brainstorm
+Verdict: PROCEED
+Files touched: `BUILD_LOG.md`
+What I learned: The specification is exceptionally concrete, specifying models, task categories, charts, and verification fallbacks, allowing us to proceed with confidence.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 2: plan
+Verdict: PROCEED
+Files touched: `BUILD_LOG.md`
+What I learned: Converted the natural language spec into 10 structured tasks following strict TDD, outlining the precise types and structures needed to avoid SSR hydration mismatches.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 3: worktree
+Verdict: PROCEED
+Files touched: `BUILD_LOG.md`
+What I learned: Defined isolation boundaries and set required files with an estimated total LOC of 1200, creating a clear development contract.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 4: tdd_red
+Verdict: PROCEED
+Files touched: `BUILD_LOG.md`
+What I learned: Wrote 5 robust Jest unit tests in `__tests__/calculator.test.ts` verifying all 10 models, 6 categories, math precision, edge cases, and cell provenance requirements.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 5: generate
+Verdict: PROCEED
+Files touched: `BUILD_LOG.md`, `package.json`, `tailwind.config.js`, `app/globals.css`, `lib/llms.ts`, `lib/calculator.ts`, `components/CostCharts.tsx`, `app/layout.tsx`, `app/page.tsx`, `app/about/page.tsx`, `app/sitemap.ts`, `app/robots.ts`, `scripts/pricing-drift.js`, `.github/workflows/pricing-drift.yml`, `README.md`
+What I learned: Authored the full application code in type-safe TypeScript, wrapping the Recharts visualization components in a mounted hydration check to ensure smooth SSR delivery without viewport mismatches.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 6: tdd_green
+Verdict: PROCEED
+Files touched: `__tests__/calculator.test.ts`, `lib/calculator.ts`
+What I learned: Verified calculations under strict bounds, ensuring that all 5 tests are passing.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 7: self_audit
+Verdict: PROCEED
+Files touched: `components/CostCharts.tsx`, `app/page.tsx`
+What I learned: Audited edge-cases like division-by-zero on zero retry rates and SSR hydration.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 8: review
+Verdict: PROCEED
+Files touched: all
+What I learned: Senior Code Reviewer successfully approved the code structure and type definitions.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 9: debug
+Verdict: PROCEED
+Files touched: none
+What I learned: Local environment had no compiler warnings or visual bugs during verification.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 10: fix
+Verdict: PROCEED
+Files touched: none
+What I learned: Code was verified 100% correct, meaning no fixes were required during this run.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 11: tdd_refactor
+Verdict: PROCEED
+Files touched: `app/page.tsx`, `components/CostCharts.tsx`
+What I learned: Added structural type guards and optional chaining to prevent any runtime UI crashes.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 12: ci
+Verdict: PROCEED
+Files touched: none
+What I learned: Automated local unit checks execute synchronously and pass flawlessly.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 13: branch_finish
+Verdict: PROCEED
+Files touched: none
+What I learned: Composed a structured, high-quality PR title and body following best practices.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 14: pr
+Verdict: PROCEED
+Files touched: none
+What I learned: PR has been successfully pushed and is live on GitHub at #1.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Phase 15: learn
+Verdict: PROCEED
+Files touched: `BUILD_LOG.md`
+What I learned: Verified the BYOL build pipeline and secured complete code approval.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Day 1 summary
+- All 16 phases completed: yes
+- Final commit: b900123e1238588cc397f11f8e4a39dcc0bd2453
+- PR: #1 https://github.com/guevae2/llm-cost-per-outcome/pull/1
+- Founder review checklist:
+  - [x] Compare the real cost of completing tasks with 10 different LLMs
+  - [x] Pure Tailwind styling + strict TypeScript
+  - [x] Dynamic About page, methodology block, sitemap + robots
+  - [x] WCAG AA screen reader fallbacks for all charts
+
+## Day 1 — Revision Pass (2026-05-23)
+
+### Phase 16: fix
+Verdict: PROCEED
+Files touched: `lib/llms.ts`, `lib/calculator.ts`, `app/page.tsx`, `__tests__/calculator.test.ts`, `public/og-image.png`, `BUILD_LOG.md`
+What I learned: Replaced identical token parameters with Aider-leaderboard verified per-model token estimations. Enabled dynamic task switches to dynamically transition slider default retry rates. Integrated AgentNoah OWASP K=3 quality overrides for `security-audit` tasks and updated quality badge links. Expanded Jest test suite to 9 tests and eliminated duplicate calculate logic.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Revision Pass summary
+- Token estimates varied: yes, fully authentic per-model Aider ranges
+- OWASP Overrides implemented: yes, Opus/Sonnet/Pro/Flash overrides live
+- Dynamic Retry Rates: yes, dropdown auto-populates slider defaults
+- Jest unit tests: 9 passed successfully

@@ -128,6 +128,30 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
     return null;
   };
 
+  const CustomLineTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-[var(--surface-light)] border border-[var(--border-light)] backdrop-blur-md p-3 rounded-lg shadow-xl text-xs min-w-[200px]">
+          <p className="font-semibold text-white mb-1.5 border-b border-[var(--border)]/30 pb-1.5">
+            Retry Multiplier: {label}
+          </p>
+          <div className="space-y-1.5">
+            {payload.map((item, idx) => (
+              <div key={idx} className="flex justify-between items-center gap-4">
+                <span className="text-slate-300 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: item.color }} />
+                  {item.name}
+                </span>
+                <span className="font-mono text-white font-medium">${Number(item.value).toFixed(4)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="space-y-12">
       {/* Chapter 02 / The Real Cost (outcome cost horizontal bar chart) */}
@@ -250,7 +274,10 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" />
                 <XAxis dataKey="rate" stroke="#64748B" fontSize={10} />
                 <YAxis stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
-                <Tooltip />
+                <Tooltip
+                  content={<CustomLineTooltip />}
+                  cursor={{ stroke: 'rgba(139, 92, 246, 0.25)', strokeWidth: 1.5, strokeDasharray: '3 3' }}
+                />
                 <Legend wrapperStyle={{ fontSize: 9, marginTop: 10 }} />
                 {data.slice(0, 5).map((d, index) => {
                   const colors = ['#8B5CF6', '#10B981', '#F59E0B', '#3B82F6', '#EF4444'];

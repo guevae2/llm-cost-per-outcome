@@ -33,9 +33,10 @@ interface CostChartsProps {
   data: ChartDataPoint[];
   selectedModels: string[];
   sliderValue: number;
+  view?: 'chapter2' | 'remaining';
 }
 
-export default function CostCharts({ data, selectedModels, sliderValue }: CostChartsProps) {
+export default function CostCharts({ data, selectedModels, sliderValue, view }: CostChartsProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [comparisonPair, setComparisonPair] = useState<string[]>([]);
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -155,8 +156,9 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
   return (
     <div className="space-y-12">
       {/* Chapter 02 / The Real Cost (outcome cost horizontal bar chart) */}
-      <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md w-full shadow-lg">
-        <div className="space-y-1 mb-6 border-b border-[var(--border)]/40 pb-3">
+      {view !== 'remaining' && (
+        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md w-full shadow-lg">
+          <div className="space-y-1 mb-6 border-b border-[var(--border)]/40 pb-3">
           <span className="text-[10px] font-bold text-violet-400 uppercase tracking-widest">02 / The Real Cost</span>
           <h3 className="text-lg font-bold text-white">Cost Per Successful Outcome</h3>
           <p className="text-xs text-slate-400">Real financial cost including retry multiplier. Lower is better.</p>
@@ -220,8 +222,10 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
           </div>
         </div>
       </div>
+    )}
 
-      {/* Chapter 03 / The Landscape (value curve cost vs quality scatter chart) */}
+    {/* Chapter 03 / The Landscape (value curve cost vs quality scatter chart) */}
+    {view !== 'chapter2' && (
       <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md w-full shadow-lg">
         <div className="space-y-1 mb-6 border-b border-[var(--border)]/40 pb-3">
           <span className="text-[10px] font-bold text-violet-400 uppercase tracking-widest">03 / The Landscape</span>
@@ -289,8 +293,10 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
           </div>
         </div>
       </div>
+    )}
 
-      {/* Explanatory Layers */}
+    {/* Explanatory Layers */}
+    {view !== 'chapter2' && (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Chapter 04a / Sensitivity Drift */}
         <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md shadow-lg">
@@ -478,6 +484,7 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
           </div>
         </div>
       </div>
-    </div>
+    )}
+  </div>
   );
 }

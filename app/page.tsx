@@ -183,9 +183,11 @@ export default function Home() {
         </div>
       </div>
 
-      <main className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start mb-12 relative z-10">
-        {/* Sticky Sidebar Parameter Card */}
-        <section className="xl:col-span-4 xl:sticky xl:top-8 glass-strong p-6 rounded-2xl shadow-xl space-y-6 self-start">
+      <main className="space-y-12 mb-12 relative z-10">
+        {/* Top Split Section: Control Panel + Chapter 02 Outcome Cost */}
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+          {/* Sticky Sidebar Parameter Card */}
+          <section className="xl:col-span-4 xl:sticky xl:top-8 glass-strong p-6 rounded-2xl shadow-xl space-y-6 self-start">
           <div className="space-y-1 pb-3 border-b border-[var(--border)]">
             <span className="text-[10px] font-bold text-violet-400 uppercase tracking-widest">01 / Control Panel</span>
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
@@ -288,9 +290,16 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Narrative Flow Right Section */}
-        <section className="xl:col-span-8 space-y-8">
-          <CostCharts data={finalResults} selectedModels={selectedModels} sliderValue={retryRate} />
+        {/* Chapter 02 Outcome Cost Chart (Maximized within its 8-column split) */}
+        <section className="xl:col-span-8">
+          <CostCharts data={finalResults} selectedModels={selectedModels} sliderValue={retryRate} view="chapter2" />
+        </section>
+      </div>
+
+      {/* Bottom Full-Width Section: Chapters 03, 04, and 05 */}
+      <div className="w-full space-y-12 mt-12">
+        {/* Chapters 03 and 04 */}
+        <CostCharts data={finalResults} selectedModels={selectedModels} sliderValue={retryRate} view="remaining" />
 
           {/* Chapter 05 / Ground Evidence */}
           <div className="glass-strong rounded-2xl shadow-xl overflow-hidden backdrop-blur-md">
@@ -402,7 +411,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </section>
+        </div>
       </main>
 
       <footer className="mt-auto border-t border-[var(--border)] pt-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row sm:justify-between items-center gap-4">

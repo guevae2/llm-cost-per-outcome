@@ -325,7 +325,7 @@ export default function Home() {
                     <th onClick={() => handleSort('cost')} className="px-6 py-3 cursor-pointer hover:text-white transition">
                       Outcome Cost {sortField === 'cost' && (sortOrder === 'asc' ? '▲' : '▼')}
                     </th>
-                    <th className="px-6 py-3">Source Badge</th>
+                    <th className="px-6 py-3">Token Source</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[var(--border)]/40">
@@ -379,14 +379,20 @@ export default function Home() {
                           ${item.cost.toFixed(4)}
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded border ${
+                          <span className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded border ${
                             item.source === 'agentnoah-owasp'
                               ? 'bg-purple-500/10 text-purple-300 border-purple-500/30'
                               : item.source === 'aider'
                               ? 'bg-blue-500/10 text-blue-300 border-blue-500/30'
-                              : 'bg-slate-800 text-slate-400 border-slate-700'
+                              : 'bg-slate-850 text-slate-400 border-slate-700'
                           }`}>
-                            {item.source}
+                            {item.source === 'agentnoah-owasp'
+                              ? 'OWASP Workload'
+                              : item.source === 'aider'
+                              ? 'Aider Workload'
+                              : item.source === 'swe-bench'
+                              ? 'SWE-Bench'
+                              : 'User Workload'}
                           </span>
                         </td>
                       </tr>
@@ -404,10 +410,10 @@ export default function Home() {
                 The Ground Truth Registry (⬇️ Sorted by True Cost)
               </div>
               <p className="text-slate-400 leading-relaxed">
-                <strong className="text-slate-200">What is measured:</strong> The raw underlying calculations proving the final costs. It maps exactly how many words/tokens were read or written, the verified accuracy score, and the final outcome price.
+                <strong className="text-slate-200">What is measured:</strong> The raw underlying calculations proving the final costs. It maps the workload token counts, verified accuracy (Quality Score), and the calculated True Cost.
               </p>
               <p className="text-slate-500 text-[11px] leading-relaxed pt-0.5">
-                <strong className="text-slate-400">Auditable & Verified:</strong> Click any highlighted Quality Score link to audit the real-world benchmark evaluations (e.g. AgentNoah security audits or LMSys battles) verifying these results.
+                <strong className="text-slate-400">Verifiability & Dual Sourcing:</strong> (1) <strong className="text-slate-300">Quality Source:</strong> Click any highlighted link under Quality Score to audit the accuracy evaluation (e.g. LMSys battles or AgentNoah OWASP audits). (2) <strong className="text-slate-300">Token Source:</strong> The rightmost badge identifies the benchmark workload used to audit raw input/output token counts.
               </p>
             </div>
           </div>

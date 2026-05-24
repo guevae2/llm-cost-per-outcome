@@ -386,6 +386,21 @@ export default function Home() {
                 </tbody>
               </table>
             </div>
+
+            <div className="mt-6 pt-4 border-t border-[var(--border)]/30 text-xs space-y-2">
+              <div className="flex items-center gap-1.5 text-violet-400 font-semibold uppercase tracking-wider text-[10px]">
+                <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Auditable outcomes registry
+              </div>
+              <p className="text-slate-400 leading-relaxed">
+                <strong className="text-slate-200">What is measured:</strong> The complete, sortable baseline database mapping raw input/output token counts, verified accuracy (Quality Score), and final outcome cost for every model.
+              </p>
+              <p className="text-slate-500 text-[11px] leading-relaxed pt-0.5">
+                <strong className="text-slate-400">Verifiability & Provenance:</strong> Click any highlighted Quality Score link to audit the real-world benchmark data (e.g. AgentNoah OWASP audits, LMSys Arena, or Aider leaderboards) supporting these metrics.
+              </p>
+            </div>
           </div>
         </section>
       </main>

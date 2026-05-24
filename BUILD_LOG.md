@@ -200,4 +200,20 @@ What I learned: Restructured the main dashboard grid columns. Maintained Chapter
 - Jest unit tests: 9/9 passing flawlessly
 - Final commit pushed to origin/main: `9d2c6c5` (layout optimization) / `abc0277` (non-tech pass) / `cd4258a` (hover highlights)
 
+## Day 2 — Visual Sourcing Alignment & Clarification (2026-05-24)
+
+### Phase 22: fix
+Verdict: PROCEED
+Files touched: `app/page.tsx`, `BUILD_LOG.md`
+What I learned: Resolved the data-sourcing mismatch under Chapter 05 (Ground Evidence). Renamed the table column header from "Source Badge" to "Token Source" and mapped technical keys (`agentnoah-owasp`, `aider`, `swe-bench`) to descriptive user-facing badges ("OWASP Workload", "Aider Workload", "SWE-Bench"). Cleanly styled the badges with transparent background overlays and border configurations to maintain design consistency. Refined the footnote section to explain the dual-sourcing framework: clickable Quality Score links verify the benchmark accuracy (e.g. LMSys battles or security audits) while Token Source badges verify the audited workload used to measure input/output tokens.
+
+### Visual Sourcing Summary
+- Renamed column to Token Source: yes
+- User-facing workload badges implemented: yes
+- Footnote explanations for dual-sourcing: yes
+- Next.js build compilation: passes cleanly in 6.3s
+- Jest unit tests: 9/9 passing flawlessly
+- Final commit pushed to origin/main: `be0b751` (visual sourcing pass)
+
+
 

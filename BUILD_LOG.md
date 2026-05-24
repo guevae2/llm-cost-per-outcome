@@ -178,5 +178,26 @@ Workaround applied: none
 - Visual charts stacked vertically for story: yes
 - npm run build compiles cleanly: yes
 - npm test still passes (9/9): yes
-- Final commit pushed to origin/main: 14d5b68c66d3701707f4834caa2171054231eec0
+- Final commit pushed to origin/main: d32ceab2de59bb8eb652c75894d61a1ab2bec7d7
+
+## Day 2 — Storytelling Visual Explanations & Layout Maximization (2026-05-24)
+
+### Phase 20: fix
+Verdict: PROCEED
+Files touched: `components/CostCharts.tsx`, `app/page.tsx`, `BUILD_LOG.md`
+What I learned: Unified all interactive visual hover highlight cursors across bar and line charts to a custom, low-opacity violet glow overlay (`rgba(139, 92, 246, 0.05)`) and dashed guides (`strokeDasharray: '3 3'`). Integrated premium dark-glass tooltip overlays and added textbook-style "What is measured & How to read" visual explanation cards under all visual chart snippets (Chapters 02, 03, 04a, 04b, 05). Used simple real-world analogies (e.g. Retry Rate as a model's "mistake penalty" or "accuracy tax") and direction guides (e.g., `⬇️ Lower is better`, `🎯 Bottom-Right is best`) to hook non-technical audiences.
+
+### Phase 21: fix
+Verdict: PROCEED
+Files touched: `components/CostCharts.tsx`, `app/page.tsx`, `BUILD_LOG.md`
+What I learned: Restructured the main dashboard grid columns. Maintained Chapter 01 (Control Panel sidebar) and Chapter 02 (Outcome Cost Horizontal Bar Chart) in a side-by-side split grid (`xl:col-span-4` / `xl:col-span-8`) to keep instant inputs-to-cost reactivity loops in active focus. Moved Chapter 03, 04a & 04b, and Chapter 05 completely out of the split layout into spacious full-width containers (`w-full`). This resolved the empty left-sidebar column scroll issue and maximized screen space utilization for all complex visualizations and data tables.
+
+### Optimization & Explanations summary
+- Unified visual hover highlights: yes
+- Non-technical explanations & direction guides live: yes
+- Full-width screen layout maximized: yes
+- Next.js Turbopack build static generation: passes cleanly in 6.2s
+- Jest unit tests: 9/9 passing flawlessly
+- Final commit pushed to origin/main: `9d2c6c5` (layout optimization) / `abc0277` (non-tech pass) / `cd4258a` (hover highlights)
+
 

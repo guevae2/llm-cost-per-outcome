@@ -392,13 +392,13 @@ export default function Home() {
                 <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Auditable outcomes registry
+                The Ground Truth Registry (⬇️ Sorted by True Cost)
               </div>
               <p className="text-slate-400 leading-relaxed">
-                <strong className="text-slate-200">What is measured:</strong> The complete, sortable baseline database mapping raw input/output token counts, verified accuracy (Quality Score), and final outcome cost for every model.
+                <strong className="text-slate-200">What is measured:</strong> The raw underlying calculations proving the final costs. It maps exactly how many words/tokens were read or written, the verified accuracy score, and the final outcome price.
               </p>
               <p className="text-slate-500 text-[11px] leading-relaxed pt-0.5">
-                <strong className="text-slate-400">Verifiability & Provenance:</strong> Click any highlighted Quality Score link to audit the real-world benchmark data (e.g. AgentNoah OWASP audits, LMSys Arena, or Aider leaderboards) supporting these metrics.
+                <strong className="text-slate-400">Auditable & Verified:</strong> Click any highlighted Quality Score link to audit the real-world benchmark evaluations (e.g. AgentNoah security audits or LMSys battles) verifying these results.
               </p>
             </div>
           </div>

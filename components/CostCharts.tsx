@@ -209,14 +209,14 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
             <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            Metric breakdown & interpretation
+            Understanding Outcome Cost (⬇️ Lower is better)
           </div>
           <p className="text-slate-400 leading-relaxed">
-            <strong className="text-slate-200">What is measured:</strong> The true end-to-end financial cost to achieve a single successful execution of the selected task, accounting for the frequency of failures and subsequent retries.
+            <strong className="text-slate-200">The Core Idea:</strong> Raw token prices lie. This chart measures the <strong className="text-slate-200">True Price</strong> you actually pay to get one correct answer. If a cheap model makes frequent mistakes and has to retry, its True Price spikes.
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-1.5 text-slate-500 text-[11px] pt-1">
-            <span><strong className="text-slate-400">Formula:</strong> <code className="text-violet-300 font-mono">(Input Base + Output Base) × Retry Multiplier</code></span>
-            <span><strong className="text-slate-400">Why it matters:</strong> Low-cost models that fail often and require multiple retries are frequently more expensive than smarter, higher-priced models that succeed on the first attempt.</span>
+            <span><strong className="text-slate-400">Formula:</strong> <code className="text-violet-300 font-mono">(Base Cost to Run) × Retry Multiplier = True Outcome Cost</code></span>
+            <span><strong className="text-slate-400">Mistake Penalty (Retry Rate):</strong> Think of this as an accuracy tax. A model that costs $0.01 per run but fails half the time requires 2.0x runs ($0.02) to succeed.</span>
           </div>
         </div>
       </div>
@@ -278,14 +278,14 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
             <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            How to read the value curve
+            Finding the Sweet Spot (🎯 Bottom-Right is best)
           </div>
           <p className="text-slate-400 leading-relaxed">
-            <strong className="text-slate-200">What is measured:</strong> The cost-to-quality trade-off landscape. The horizontal X-axis maps accuracy on real-world benchmarks, the vertical Y-axis tracks overall outcome cost, and each model bubble's size shows its retry frequency.
+            <strong className="text-slate-200">How to read:</strong> We want high accuracy (<strong className="text-slate-200">⬆️ Higher is better</strong> on X-axis) and low cost (<strong className="text-slate-200">⬇️ Lower is better</strong> on Y-axis). The bubble size shows how often the model makes mistakes (larger bubbles = more retries needed).
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-1.5 text-slate-500 text-[11px] pt-1">
-            <span><strong className="text-slate-400">Target Quadrant:</strong> Focus on the <span className="text-emerald-400 font-medium">Bottom-Right</span> (highest accuracy at the lowest actual outcome cost).</span>
-            <span><strong className="text-slate-400">Caution:</strong> Large bubbles far to the left represent "cost traps" (cheap raw token prices but high failure rates).</span>
+            <span><strong className="text-slate-400">Target Zone:</strong> The **Bottom-Right** represents high-accuracy models that don't drain your wallet.</span>
+            <span><strong className="text-slate-400">Cost Traps:</strong> Large bubbles far to the left represent models that look cheap but fail too often to be economical.</span>
           </div>
         </div>
       </div>
@@ -361,13 +361,13 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
               <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Understanding cost sensitivity
+              Cost Stability under Pressure (⬇️ Flatter is better)
             </div>
             <p className="text-slate-400 leading-relaxed">
-              <strong className="text-slate-200">What is measured:</strong> The trajectory of outcome costs as task complexity increases, moving from a simple execution (0.5x retry rate multiplier) to pessimistic conditions (3.0x).
+              <strong className="text-slate-200">What is measured:</strong> How fast your bills scale as task difficulty increases. As tasks get harder, AI models make more mistakes (higher Retry Multiplier on X-axis).
             </p>
             <p className="text-slate-500 text-[11px] leading-relaxed pt-0.5">
-              <strong className="text-slate-400">Slopes & Scaling:</strong> Steeper lines indicate models highly sensitive to task failure. Flatter lines indicate resilient models that maintain consistent economics even as task complexity scales.
+              <strong className="text-slate-400">The Trend:</strong> Steeper lines indicate models that break the bank when tasks get complex. Flat lines indicate smart, resilient models that keep your costs stable and predictable.
             </p>
           </div>
         </div>
@@ -467,13 +467,13 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
               <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Base cost structural analysis
+              Reading vs. Writing Costs
             </div>
             <p className="text-slate-400 leading-relaxed">
-              <strong className="text-slate-200">What is measured:</strong> The split of a single run's baseline cost between reading the input prompt (input cost) and writing the completion (output cost).
+              <strong className="text-slate-200">What is measured:</strong> A single run's baseline cost split between "Reading" (Input tokens) and "Writing" (Output tokens).
             </p>
             <p className="text-slate-500 text-[11px] leading-relaxed pt-0.5">
-              <strong className="text-slate-400">Optimization:</strong> Models with high output costs relative to input benefit significantly from concise agent formatting, structured schema constraints, and prompt-caching strategies.
+              <strong className="text-slate-400">Optimization:</strong> If a model's cost is dominated by Output (green), we can save massive amounts of money by instructing the AI to keep its answers short and concise.
             </p>
           </div>
         </div>

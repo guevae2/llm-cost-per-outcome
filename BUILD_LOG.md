@@ -161,6 +161,22 @@ Workaround applied: Executed visual-polish pass locally in workspace, verified b
 - npm run build still passes: yes
 - npm test still passes (9/9): yes
 - prefers-reduced-motion respected: yes
-- No data/calculation changes (lib/llms.ts unchanged): yes
 - Final commit pushed to origin/main: f138feb261d03377073625a24add0f96f9fa59b3
+
+## Day 2 — Storytelling Dashboard Layout (2026-05-24)
+
+### Phase 19: fix
+Verdict: PROCEED
+Files touched: app/page.tsx, components/CostCharts.tsx, BUILD_LOG.md
+What I learned: Realigned the dashboard grid structure to tell a guided narrative. Integrated dynamic useMemo narrativeInsight panel calculating contextual metrics in real time. Swapped parameter sidebar to sticky alignment. Added numeric chapter badges. Stacked primary cost and value charts vertically for linear desktop scanability.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Storytelling summary
+- Dynamic narrative insight box added: yes
+- Sticky parameters sidebar active: yes
+- Visual charts stacked vertically for story: yes
+- npm run build compiles cleanly: yes
+- npm test still passes (9/9): yes
+- Final commit pushed to origin/main: 14d5b68c66d3701707f4834caa2171054231eec0
 

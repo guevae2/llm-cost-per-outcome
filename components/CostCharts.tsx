@@ -112,108 +112,119 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
 
   return (
     <div className="space-y-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md">
-          <h3 className="text-lg font-bold text-white mb-1">Cost Per Successful Outcome</h3>
-          <p className="text-xs text-slate-400 mb-6">Real financial cost including retry multiplier. Lower is better.</p>
-          
-          <div className="h-[320px] relative w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={sortedByCost} layout="vertical" margin={{ left: 10, right: 30, top: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" horizontal={true} vertical={false} />
-                <XAxis type="number" stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
-                <YAxis type="category" dataKey="name" stroke="#64748B" fontSize={10} width={100} />
-                <Tooltip content={<CustomBarTooltip />} />
-                <Bar
-                  dataKey="cost"
-                  fill="#8b5cf6"
-                  radius={[0, 4, 4, 0]}
-                  barSize={14}
-                  isAnimationActive={!reduceMotion}
-                  animationDuration={800}
-                  animationEasing="ease-out"
-                />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          <div className="sr-only">
-            <h4>Cost Per Successful Outcome Table Fallback</h4>
-            <table>
-              <thead>
-                <tr>
-                  <th>Model Name</th>
-                  <th>Cost per Outcome</th>
-                  <th>Quality Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedByCost.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.name}</td>
-                    <td>${item.cost.toFixed(4)}</td>
-                    <td>{item.quality}%</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      {/* Chapter 02 / The Real Cost (outcome cost horizontal bar chart) */}
+      <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md w-full shadow-lg">
+        <div className="space-y-1 mb-6 border-b border-[var(--border)]/40 pb-3">
+          <span className="text-[10px] font-bold text-violet-400 uppercase tracking-widest">02 / The Real Cost</span>
+          <h3 className="text-lg font-bold text-white">Cost Per Successful Outcome</h3>
+          <p className="text-xs text-slate-400">Real financial cost including retry multiplier. Lower is better.</p>
+        </div>
+        
+        <div className="h-[320px] relative w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={sortedByCost} layout="vertical" margin={{ left: 10, right: 30, top: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" horizontal={true} vertical={false} />
+              <XAxis type="number" stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
+              <YAxis type="category" dataKey="name" stroke="#64748B" fontSize={10} width={100} />
+              <Tooltip content={<CustomBarTooltip />} />
+              <Bar
+                dataKey="cost"
+                fill="#8b5cf6"
+                radius={[0, 4, 4, 0]}
+                barSize={14}
+                isAnimationActive={!reduceMotion}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
 
-        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md">
-          <h3 className="text-lg font-bold text-white mb-1">Value Curve: Cost vs. Quality</h3>
-          <p className="text-xs text-slate-400 mb-6">X = Quality Score, Y = Cost. Bubble size = Retry Rate. Aim for bottom-right.</p>
-          
-          <div className="h-[320px] relative w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" />
-                <XAxis type="number" dataKey="quality" name="Quality Score" unit="%" stroke="#64748B" fontSize={10} domain={[70, 100]} />
-                <YAxis type="number" dataKey="cost" name="Outcome Cost" stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
-                <ZAxis type="number" dataKey="retryRate" range={[50, 400]} />
-                <Tooltip content={<CustomScatterTooltip />} />
-                <Scatter
-                  name="Models"
-                  data={data}
-                  fill="#8b5cf6"
-                  isAnimationActive={!reduceMotion}
-                  animationDuration={800}
-                  animationEasing="ease-out"
-                />
-              </ScatterChart>
-            </ResponsiveContainer>
-          </div>
-
-          <div className="sr-only">
-            <h4>Value Curve Table Fallback</h4>
-            <table>
-              <thead>
-                <tr>
-                  <th>Model Name</th>
-                  <th>Quality Score</th>
-                  <th>Cost per Outcome</th>
-                  <th>Retry Rate</th>
+        <div className="sr-only">
+          <h4>Cost Per Successful Outcome Table Fallback</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Model Name</th>
+                <th>Cost per Outcome</th>
+                <th>Quality Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedByCost.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.name}</td>
+                  <td>${item.cost.toFixed(4)}</td>
+                  <td>{item.quality}%</td>
                 </tr>
-              </thead>
-              <tbody>
-                {data.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.name}</td>
-                    <td>{item.quality}%</td>
-                    <td>${item.cost.toFixed(4)}</td>
-                    <td>{item.retryRate}x</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
+      {/* Chapter 03 / The Landscape (value curve cost vs quality scatter chart) */}
+      <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md w-full shadow-lg">
+        <div className="space-y-1 mb-6 border-b border-[var(--border)]/40 pb-3">
+          <span className="text-[10px] font-bold text-violet-400 uppercase tracking-widest">03 / The Landscape</span>
+          <h3 className="text-lg font-bold text-white">Value Curve: Cost vs. Quality</h3>
+          <p className="text-xs text-slate-400">X = Quality Score, Y = Cost. Bubble size = Retry Rate. Aim for bottom-right.</p>
+        </div>
+        
+        <div className="h-[320px] relative w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" />
+              <XAxis type="number" dataKey="quality" name="Quality Score" unit="%" stroke="#64748B" fontSize={10} domain={[70, 100]} />
+              <YAxis type="number" dataKey="cost" name="Outcome Cost" stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
+              <ZAxis type="number" dataKey="retryRate" range={[50, 400]} />
+              <Tooltip content={<CustomScatterTooltip />} />
+              <Scatter
+                name="Models"
+                data={data}
+                fill="#8b5cf6"
+                isAnimationActive={!reduceMotion}
+                animationDuration={800}
+                animationEasing="ease-out"
+              />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="sr-only">
+          <h4>Value Curve Table Fallback</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Model Name</th>
+                <th>Quality Score</th>
+                <th>Cost per Outcome</th>
+                <th>Retry Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.name}</td>
+                  <td>{item.quality}%</td>
+                  <td>${item.cost.toFixed(4)}</td>
+                  <td>{item.retryRate}x</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Explanatory Layers */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md">
-          <h3 className="text-lg font-bold text-white mb-1">Retry Rate Sensitivity Analysis</h3>
-          <p className="text-xs text-slate-400 mb-6">X-axis: Retry Rate Multiplier. Y-axis: $/outcome. Shows cost drift behavior.</p>
+        {/* Chapter 04a / Sensitivity Drift */}
+        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md shadow-lg">
+          <div className="space-y-1 mb-6 border-b border-[var(--border)]/40 pb-3">
+            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">04a / Sensitivity Drift</span>
+            <h3 className="text-lg font-bold text-white">Retry Rate Sensitivity Analysis</h3>
+            <p className="text-xs text-slate-400">X-axis: Retry Rate Multiplier. Y-axis: $/outcome. Shows cost drift behavior.</p>
+          </div>
           
           <div className="h-[320px] relative w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -269,10 +280,12 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
           </div>
         </div>
 
-        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-            <div>
-              <h3 className="text-lg font-bold text-white mb-1">Cost Stack-up: Input vs Output</h3>
+        {/* Chapter 04b / Token Distribution */}
+        <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md shadow-lg">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 border-b border-[var(--border)]/40 pb-3">
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">04b / Token Distribution</span>
+              <h3 className="text-lg font-bold text-white">Cost Stack-up: Input vs Output</h3>
               <p className="text-xs text-slate-400">Comparing base cost allocation by input and output tokens.</p>
             </div>
             {selectedModels.length >= 2 && (

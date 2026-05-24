@@ -55,6 +55,29 @@ export default function Home() {
     });
   }, [calculatedResults, selectedModels, sortField, sortOrder]);
 
+  // Dynamic Narrative Insight logic
+  const narrativeInsight = useMemo(() => {
+    if (finalResults.length === 0) {
+      return "Please select at least one LLM model to calculate comparison metrics.";
+    }
+
+    const cheapest = finalResults[0];
+    const mostExpensive = finalResults[finalResults.length - 1];
+
+    // Find a premium tier model in the list for a striking narrative anchor
+    const hasOpus = finalResults.find(r => r.id === 'claude-opus-4-7');
+    const hasSonnet = finalResults.find(r => r.id === 'claude-sonnet-4-6');
+    const premiumModel = hasOpus || hasSonnet || mostExpensive;
+
+    const premiumRatio = cheapest.cost > 0 ? (premiumModel.cost / cheapest.cost).toFixed(0) : '0';
+
+    return (
+      <span>
+        For <strong>{activeCategory?.name}</strong>, <strong>{cheapest.name}</strong> is currently the most cost-effective option, completing the outcome for <strong>${cheapest.cost.toFixed(4)}</strong>. In comparison, the high-capacity <strong>{premiumModel.name}</strong> costs <strong>${premiumModel.cost.toFixed(4)}</strong> per success—making it <strong>{premiumRatio}x more expensive</strong> for this specific workload. Adjusting the task dropdown or the retry rate slider on the left will instantly re-calculate these economic tipping points in real-time.
+      </span>
+    );
+  }, [finalResults, activeCategory]);
+
   const toggleModel = (id: string) => {
     if (selectedModels.includes(id)) {
       if (selectedModels.length > 1) {
@@ -146,12 +169,30 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Dynamic Narrative Insight Box */}
+      <div className="mb-8 glass-strong rounded-2xl p-5 shadow-xl border border-emerald-500/20 backdrop-blur-md relative overflow-hidden group hover:border-emerald-500/30 transition duration-300">
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-transparent to-violet-500/5 pointer-events-none" />
+        <div className="flex gap-4 items-start relative z-10">
+          <div className="bg-emerald-500/10 border border-emerald-500/30 p-2.5 rounded-xl shrink-0">
+            <Sparkles className="h-5 w-5 text-emerald-400 animate-pulse" />
+          </div>
+          <div className="space-y-1">
+            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Dynamic Narrative Insight</h4>
+            <p className="text-sm text-slate-200 leading-relaxed font-sans mt-0.5">{narrativeInsight}</p>
+          </div>
+        </div>
+      </div>
+
       <main className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start mb-12 relative z-10">
-        <section className="xl:col-span-4 glass-strong p-6 rounded-2xl shadow-xl space-y-6">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2 pb-3 border-b border-[var(--border)]">
-            <Calculator className="h-5 w-5 text-violet-400" />
-            <span>Calculator Parameters</span>
-          </h2>
+        {/* Sticky Sidebar Parameter Card */}
+        <section className="xl:col-span-4 xl:sticky xl:top-8 glass-strong p-6 rounded-2xl shadow-xl space-y-6 self-start">
+          <div className="space-y-1 pb-3 border-b border-[var(--border)]">
+            <span className="text-[10px] font-bold text-violet-400 uppercase tracking-widest">01 / Control Panel</span>
+            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <Calculator className="h-5 w-5 text-violet-400" />
+              <span>Calculator Parameters</span>
+            </h2>
+          </div>
 
           <div className="space-y-2">
             <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider">
@@ -247,12 +288,17 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Narrative Flow Right Section */}
         <section className="xl:col-span-8 space-y-8">
           <CostCharts data={finalResults} selectedModels={selectedModels} sliderValue={retryRate} />
 
+          {/* Chapter 05 / Ground Evidence */}
           <div className="glass-strong rounded-2xl shadow-xl overflow-hidden backdrop-blur-md">
             <div className="px-6 py-4 border-b border-[var(--border)] flex justify-between items-center bg-black/10">
-              <h3 className="text-lg font-bold text-white">Stack-Ranked Outcomes</h3>
+              <div className="space-y-1">
+                <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">05 / Ground Evidence</span>
+                <h3 className="text-lg font-bold text-white">Stack-Ranked Outcomes</h3>
+              </div>
               <span className="text-xs text-slate-400 font-medium">Sorted by cost ascending</span>
             </div>
             

@@ -2,6 +2,8 @@
 
 **The real cost of finishing a task with an LLM agent — not just the sticker price per million tokens.**
 
+[![LLM Cost-Per-Outcome Calculator — Cheap per token ≠ Cheap per outcome](public/screenshot-hero.png)](https://llm-cost-per-outcome.vercel.app)
+
 [![Built by AgentNoah BUILD](https://img.shields.io/badge/Built%20by-AgentNoah%20BUILD-%2310B981?style=flat-square)](https://agentnoah.dev)
 [![Live demo](https://img.shields.io/badge/Live%20demo-llm--cost--per--outcome.vercel.app-%237C3AED?style=flat-square)](https://llm-cost-per-outcome.vercel.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)

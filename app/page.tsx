@@ -288,18 +288,18 @@ export default function Home() {
               (in_tokens × $/M + out_tokens × $/M) × retry_rate
             </div>
           </div>
-        </section>
+          </section>
 
-        {/* Chapter 02 Outcome Cost Chart (Maximized within its 8-column split) */}
-        <section className="xl:col-span-8">
-          <CostCharts data={finalResults} selectedModels={selectedModels} sliderValue={retryRate} view="chapter2" />
-        </section>
-      </div>
+          {/* Chapter 02 Outcome Cost Chart (Maximized within its 8-column split) */}
+          <section className="xl:col-span-8">
+            <CostCharts data={finalResults} selectedModels={selectedModels} sliderValue={retryRate} view="chapter2" />
+          </section>
+        </div>
 
-      {/* Bottom Full-Width Section: Chapters 03, 04, and 05 */}
-      <div className="w-full space-y-12 mt-12">
-        {/* Chapters 03 and 04 */}
-        <CostCharts data={finalResults} selectedModels={selectedModels} sliderValue={retryRate} view="remaining" />
+        {/* Bottom Full-Width Section: Chapters 03, 04, and 05 */}
+        <div className="w-full space-y-12 mt-12">
+          {/* Chapters 03 and 04 */}
+          <CostCharts data={finalResults} selectedModels={selectedModels} sliderValue={retryRate} view="remaining" />
 
           {/* Chapter 05 / Ground Evidence */}
           <div className="glass-strong rounded-2xl shadow-xl overflow-hidden backdrop-blur-md">

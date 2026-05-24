@@ -282,27 +282,31 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
 
         {/* Chapter 04b / Token Distribution */}
         <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-2xl backdrop-blur-md shadow-lg">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 border-b border-[var(--border)]/40 pb-3">
+          <div className="space-y-4 mb-4 border-b border-[var(--border)]/40 pb-3">
             <div className="space-y-1">
               <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">04b / Token Distribution</span>
               <h3 className="text-lg font-bold text-white">Cost Stack-up: Input vs Output</h3>
               <p className="text-xs text-slate-400">Comparing base cost allocation by input and output tokens.</p>
             </div>
+            
+            {/* Dedicated Comparison Filters Row */}
             {selectedModels.length >= 2 && (
-              <div className="mt-2 sm:mt-0 flex gap-2">
+              <div className="flex flex-wrap gap-2 items-center pt-2">
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Compare:</span>
                 <select
                   value={comparisonPair[0] || ""}
                   onChange={(e) => setComparisonPair([e.target.value, comparisonPair[1] || ""])}
-                  className="bg-[#1C2538] text-xs text-white border border-slate-700 px-2 py-1 rounded"
+                  className="bg-[var(--surface-light)] text-xs text-slate-200 border border-[var(--border-light)] px-3 py-1.5 rounded-xl outline-none focus:border-violet-500 transition duration-200"
                 >
                   {selectedModels.map((m) => (
                     <option key={m} value={m}>{LLM_MODELS[m]?.name || m}</option>
                   ))}
                 </select>
+                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">vs</span>
                 <select
                   value={comparisonPair[1] || ""}
                   onChange={(e) => setComparisonPair([comparisonPair[0] || "", e.target.value])}
-                  className="bg-[#1C2538] text-xs text-white border border-slate-700 px-2 py-1 rounded"
+                  className="bg-[var(--surface-light)] text-xs text-slate-200 border border-[var(--border-light)] px-3 py-1.5 rounded-xl outline-none focus:border-violet-500 transition duration-200"
                 >
                   {selectedModels.map((m) => (
                     <option key={m} value={m}>{LLM_MODELS[m]?.name || m}</option>

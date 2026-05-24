@@ -232,7 +232,3 @@ Workaround applied: none
 - npm run build still passes: yes
 - No data/calculation changes (lib/llms.ts unchanged): yes
 - Final commit pushed to origin/main: `1e73fe4`
-
-
-
-

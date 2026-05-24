@@ -110,6 +110,24 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
     return null;
   };
 
+  const CustomStackTooltip = ({ active, payload }: TooltipProps<number, string>) => {
+    if (active && payload && payload.length) {
+      const dataPoint = payload[0].payload;
+      return (
+        <div className="bg-[var(--surface-light)] border border-[var(--border-light)] backdrop-blur-md p-3 rounded-lg shadow-xl text-xs">
+          <p className="font-semibold text-white mb-1">{dataPoint.name}</p>
+          <p className="text-violet-300 font-medium">Input Base Cost: ${dataPoint.inputCost.toFixed(4)}</p>
+          <p className="text-emerald-400 font-medium">Output Base Cost: ${dataPoint.outputCost.toFixed(4)}</p>
+          <p className="text-slate-300 font-bold border-t border-[var(--border)]/30 mt-1.5 pt-1.5 flex justify-between">
+            <span>Total Base Cost:</span>
+            <span>${(dataPoint.inputCost + dataPoint.outputCost).toFixed(4)}</span>
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="space-y-12">
       {/* Chapter 02 / The Real Cost (outcome cost horizontal bar chart) */}
@@ -126,7 +144,7 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" horizontal={true} vertical={false} />
               <XAxis type="number" stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
               <YAxis type="category" dataKey="name" stroke="#64748B" fontSize={10} width={100} />
-              <Tooltip content={<CustomBarTooltip />} />
+              <Tooltip content={<CustomBarTooltip />} cursor={{ fill: 'rgba(139, 92, 246, 0.05)' }} />
               <Bar
                 dataKey="cost"
                 fill="#8b5cf6"
@@ -322,7 +340,7 @@ export default function CostCharts({ data, selectedModels, sliderValue }: CostCh
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(139, 92, 246, 0.1)" />
                 <XAxis dataKey="name" stroke="#64748B" fontSize={10} />
                 <YAxis stroke="#64748B" fontSize={10} tickFormatter={(v) => `$${v.toFixed(3)}`} />
-                <Tooltip />
+                <Tooltip content={<CustomStackTooltip />} cursor={{ fill: 'rgba(139, 92, 246, 0.05)' }} />
                 <Legend wrapperStyle={{ fontSize: 10 }} />
                 <Bar
                   dataKey="inputCost"

@@ -155,7 +155,7 @@ export default function Home() {
         </h1>
         
         <p className="mt-3 text-slate-400 text-sm max-w-2xl mx-auto sm:text-base leading-relaxed">
-          Stop counting raw millions. Compare the actual financial impact of completes by factoring in pricing, baseline token usage, quality scores, and custom retries.
+          Most AI cost calculators show $X per million tokens. This one shows what you actually pay to finish a real developer task — like writing a unit test or auditing code — across 10 popular LLMs. The cost gaps will surprise you.
         </p>
 
         <div className="mt-6 flex justify-center gap-4">
@@ -177,7 +177,7 @@ export default function Home() {
             <Sparkles className="h-5 w-5 text-emerald-400 animate-pulse" />
           </div>
           <div className="space-y-1">
-            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Dynamic Narrative Insight</h4>
+            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Quick example:</h4>
             <p className="text-sm text-slate-200 leading-relaxed font-sans mt-0.5">{narrativeInsight}</p>
           </div>
         </div>
@@ -419,6 +419,27 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      <section className="my-12 glass-strong rounded-2xl p-8 text-center relative overflow-hidden">
+        <div className="absolute inset-0 ambient-bg opacity-50 -z-10" aria-hidden="true" />
+        <h2 className="text-2xl sm:text-3xl font-bold text-gradient mb-4">
+          Want this methodology on your own audits?
+        </h2>
+        <p className="text-slate-300 mb-2 max-w-2xl mx-auto leading-relaxed">
+          AgentNoah BUILD uses the same 16-phase pipeline + cross-audit memory + provenance discipline shown in this calculator — except on YOUR repo, not someone else&apos;s pricing data.
+        </p>
+        <p className="text-slate-400 text-sm mb-6 max-w-2xl mx-auto">
+          Free 14-day trial · No credit card · Bring your own IDE LLM (Claude Code, Cursor, Gemini CLI, Antigravity)
+        </p>
+        <div className="flex flex-wrap gap-3 justify-center">
+          <a href="https://agentnoah.dev" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-xl font-semibold transition duration-200 shadow-lg shadow-violet-500/20">
+            Start free trial →
+          </a>
+          <a href="https://agentnoah.dev/blog/guided-build-flash35-evidence" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border-light)] hover:border-violet-500/50 text-slate-300 hover:text-white rounded-xl font-semibold transition duration-200">
+            Read how this was built →
+          </a>
+        </div>
+      </section>
 
       <footer className="mt-auto border-t border-[var(--border)] pt-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row sm:justify-between items-center gap-4">
         <div>

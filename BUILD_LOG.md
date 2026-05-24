@@ -215,5 +215,24 @@ What I learned: Resolved the data-sourcing mismatch under Chapter 05 (Ground Evi
 - Jest unit tests: 9/9 passing flawlessly
 - Final commit pushed to origin/main: `be0b751` (visual sourcing pass)
 
+## Day 3 — Conversion Polish (2026-05-24)
+
+### Phase 23: fix
+Verdict: PROCEED
+Files touched: app/page.tsx, BUILD_LOG.md
+What I learned: Closed 3 highest-leverage UX gaps from Claude's critique. (1) Added primary CTA card before footer with "Start free trial" violet button + "Read how this was built" ghost button driving to agentnoah.dev. (2) Rewrote the hero subhead in plain English, removing the "completes" typo and corporate jargon, ending with a curiosity hook. (3) Renamed "Dynamic Narrative Insight" section header to "Quick example:" — content stays, just label becomes beginner-readable.
+BUILD-OPS bugs encountered: none
+Workaround applied: none
+
+### Day 3 summary
+- Primary CTA section added: yes
+- Hero subhead rewritten in plain English: yes
+- "Dynamic Narrative Insight" renamed: yes
+- All 9 Jest tests still pass: yes
+- npm run build still passes: yes
+- No data/calculation changes (lib/llms.ts unchanged): yes
+- Final commit pushed to origin/main: `1e73fe4`
+
+
 
 

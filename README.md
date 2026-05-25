@@ -42,6 +42,20 @@ Flip the task to something Model A struggles with — say, security auditing —
 
 ---
 
+## What it looks like
+
+The full comparison table — 10 LLMs × 6 task categories, retry-weighted, sortable:
+
+![Main calculator table showing cost-per-outcome heatmap across 10 LLMs and 6 task categories](public/screenshot-table.png)
+
+The "Quick example" callout surfaces the largest cost gap on your current selection — here, Gemini 3 Flash vs Claude 4.7 Opus for unit-test generation comes out to **353× more expensive per success**:
+
+![Quick example callout: 353x cost gap between Gemini 3 Flash and Claude 4.7 Opus for unit test generation](public/screenshot-quick-example.png)
+
+→ **[Try it live with your own task + retry-rate assumptions](https://llm-cost-per-outcome.vercel.app)** (no signup)
+
+---
+
 ## How to use it
 
 ### 1. Pick your task

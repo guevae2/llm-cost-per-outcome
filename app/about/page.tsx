@@ -119,11 +119,11 @@ export default function About() {
                   <td className="px-4 py-3">2026-05-23</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3 font-semibold text-slate-200">DeepSeek</td>
+                  <td className="px-4 py-3 font-semibold text-slate-200">DeepSeek (V4 Pro)</td>
                   <td className="px-4 py-3 text-emerald-400 hover:underline">
-                    <a href="https://api-docs.deepseek.com/pricing" target="_blank" rel="noopener noreferrer">api-docs.deepseek.com/pricing</a>
+                    <a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank" rel="noopener noreferrer">api-docs.deepseek.com/quick_start/pricing</a>
                   </td>
-                  <td className="px-4 py-3">2026-05-23</td>
+                  <td className="px-4 py-3">2026-05-25</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-3 font-semibold text-slate-200">Aider Leaderboard</td>

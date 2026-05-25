@@ -78,10 +78,10 @@ describe('LLM Cost Calculator Core Logic', () => {
       { modelId: 'gpt-4o', taskId: 'unit-test', retryRate: 1.1, expected: ((4100 / 1000000) * 2.5 + (1900 / 1000000) * 10.0) * 1.1 },
       // 2. security-audit
       { modelId: 'claude-sonnet-4-6', taskId: 'security-audit', retryRate: 1.5, expected: ((13000 / 1000000) * 3.0 + (3200 / 1000000) * 15.0) * 1.5 },
-      { modelId: 'gemini-flash-3-5', taskId: 'security-audit', retryRate: 1.5, expected: ((12800 / 1000000) * 0.075 + (2500 / 1000000) * 0.3) * 1.5 },
+      { modelId: 'gemini-flash-3-5', taskId: 'security-audit', retryRate: 1.5, expected: ((12800 / 1000000) * 1.5 + (2500 / 1000000) * 9.0) * 1.5 },
       // 3. pr-summary
-      { modelId: 'gemini-pro-3-1', taskId: 'pr-summary', retryRate: 1.1, expected: ((20000 / 1000000) * 1.25 + (1200 / 1000000) * 5.0) * 1.1 },
-      { modelId: 'deepseek-v3', taskId: 'pr-summary', retryRate: 1.1, expected: ((16500 / 1000000) * 0.55 + (900 / 1000000) * 2.19) * 1.1 },
+      { modelId: 'gemini-pro-3-1', taskId: 'pr-summary', retryRate: 1.1, expected: ((20000 / 1000000) * 2.0 + (1200 / 1000000) * 12.0) * 1.1 },
+      { modelId: 'deepseek-v4-pro', taskId: 'pr-summary', retryRate: 1.1, expected: ((16500 / 1000000) * 0.435 + (900 / 1000000) * 0.87) * 1.1 },
       // 4. generate-docs
       { modelId: 'claude-haiku-4-5', taskId: 'generate-docs', retryRate: 1.2, expected: ((7500 / 1000000) * 0.8 + (1800 / 1000000) * 4.0) * 1.2 },
       { modelId: 'gpt-4o-mini', taskId: 'generate-docs', retryRate: 1.2, expected: ((8000 / 1000000) * 0.15 + (1950 / 1000000) * 0.6) * 1.2 },
@@ -90,7 +90,7 @@ describe('LLM Cost Calculator Core Logic', () => {
       { modelId: 'gemini-flash-3', taskId: 'debug-stack', retryRate: 1.6, expected: ((6000 / 1000000) * 0.075 + (1400 / 1000000) * 0.3) * 1.6 },
       // 6. refactor-func
       { modelId: 'claude-sonnet-4-6', taskId: 'refactor-func', retryRate: 1.4, expected: ((5500 / 1000000) * 3.0 + (2100 / 1000000) * 15.0) * 1.4 },
-      { modelId: 'deepseek-v3', taskId: 'refactor-func', retryRate: 1.4, expected: ((5400 / 1000000) * 0.55 + (2000 / 1000000) * 2.19) * 1.4 }
+      { modelId: 'deepseek-v4-pro', taskId: 'refactor-func', retryRate: 1.4, expected: ((5400 / 1000000) * 0.435 + (2000 / 1000000) * 0.87) * 1.4 }
     ];
 
     cellsToVerify.forEach(({ modelId, taskId, retryRate, expected }) => {

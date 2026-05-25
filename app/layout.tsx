@@ -8,13 +8,13 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata = {
   metadataBase: new URL('https://llm-cost-per-outcome.vercel.app'),
   title: 'LLM Cost Calculator — Real Cost Per Outcome, Not Per Token',
-  description: 'Compare the real outcome cost across 10 top LLMs (Opus, Sonnet, Haiku, GPT-4o, o3-mini, Gemini Pro, DeepSeek V3) factoring in retry rates and quality scores.',
+  description: 'Compare the real outcome cost across 10 top LLMs (Opus, Sonnet, Haiku, GPT-4o, o3-mini, Gemini Pro, Gemini Flash 3.5, DeepSeek V4) factoring in retry rates and quality scores.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'LLM Cost Calculator — Real Cost Per Outcome, Not Per Token',
-    description: 'Compare the real outcome cost across 10 top LLMs (Opus, Sonnet, Haiku, GPT-4o, o3-mini, Gemini Pro, DeepSeek V3) factoring in retry rates and quality scores.',
+    description: 'Compare the real outcome cost across 10 top LLMs (Opus, Sonnet, Haiku, GPT-4o, o3-mini, Gemini Pro, Gemini Flash 3.5, DeepSeek V4) factoring in retry rates and quality scores.',
     url: 'https://llm-cost-per-outcome.vercel.app',
     siteName: 'LLM Cost-Per-Outcome Calculator',
     images: [
@@ -31,7 +31,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'LLM Cost Calculator — Real Cost Per Outcome, Not Per Token',
-    description: 'Compare the real outcome cost across 10 top LLMs (Opus, Sonnet, Haiku, GPT-4o, o3-mini, Gemini Pro, DeepSeek V3) factoring in retry rates and quality scores.',
+    description: 'Compare the real outcome cost across 10 top LLMs (Opus, Sonnet, Haiku, GPT-4o, o3-mini, Gemini Pro, Gemini Flash 3.5, DeepSeek V4) factoring in retry rates and quality scores.',
     images: ['/og-image.png'],
   },
 };

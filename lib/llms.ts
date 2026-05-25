@@ -93,24 +93,31 @@ export const LLM_MODELS: Record<string, LLMModel> = {
   },
   'gemini-pro-3-1': {
     name: 'Gemini 3.1 Pro',
-    inputCostPerM: 1.25,
-    outputCostPerM: 5.0,
+    // Verified 2026-05-25 against ai.google.dev/pricing: $2.00/$12.00 for
+    // prompts <=200K context. (Prompts >200K context: $4.00/$18.00 — not
+    // captured in this single-tier calculator; cells reflect <=200K usage.)
+    inputCostPerM: 2.0,
+    outputCostPerM: 12.0,
     qualityScore: 83.5,
     qualityScoreSource: 'https://chat.lmsys.org/?arena',
     provenance: {
       pricingUrl: 'https://ai.google.dev/pricing',
-      lastVerified: '2026-05-23'
+      lastVerified: '2026-05-25'
     }
   },
   'gemini-flash-3-5': {
     name: 'Gemini 3.5 Flash',
-    inputCostPerM: 0.075,
-    outputCostPerM: 0.3,
+    // Verified 2026-05-25 against ai.google.dev/pricing: $1.50/$9.00 per Mtok.
+    // (Previous calculator value of $0.075/$0.30 was the Gemini Flash 3 price
+    // mistakenly applied here — Flash 3.5 is the new workhorse-tier model
+    // released 2026-05-19 and is priced 20-30x higher than its predecessor.)
+    inputCostPerM: 1.5,
+    outputCostPerM: 9.0,
     qualityScore: 78.9,
     qualityScoreSource: 'https://chat.lmsys.org/?arena',
     provenance: {
       pricingUrl: 'https://ai.google.dev/pricing',
-      lastVerified: '2026-05-23'
+      lastVerified: '2026-05-25'
     }
   },
   'gemini-flash-3': {
@@ -124,15 +131,21 @@ export const LLM_MODELS: Record<string, LLMModel> = {
       lastVerified: '2026-05-23'
     }
   },
-  'deepseek-v3': {
-    name: 'DeepSeek V3',
-    inputCostPerM: 0.55,
-    outputCostPerM: 2.19,
+  'deepseek-v4-pro': {
+    // Verified 2026-05-25 against api-docs.deepseek.com: DeepSeek V3
+    // (deepseek-chat / deepseek-reasoner) is being deprecated. Current
+    // lineup is V4-Flash + V4-Pro. We use V4-Pro here (frontier-tier).
+    // Listed pricing is currently 75% discounted; non-discounted would
+    // be ~4x higher. Quality score retained from V3 baseline; replace
+    // once we have a V4-Pro-specific benchmark.
+    name: 'DeepSeek V4 Pro',
+    inputCostPerM: 0.435,
+    outputCostPerM: 0.87,
     qualityScore: 82.1,
     qualityScoreSource: 'https://chat.lmsys.org/?arena',
     provenance: {
-      pricingUrl: 'https://api-docs.deepseek.com/pricing',
-      lastVerified: '2026-05-23'
+      pricingUrl: 'https://api-docs.deepseek.com/quick_start/pricing',
+      lastVerified: '2026-05-25'
     }
   }
 };
@@ -151,7 +164,7 @@ export const TASK_CATEGORIES: Record<string, TaskCategory> = {
       'gemini-pro-3-1': { inputTokens: 4300, outputTokens: 2000, source: 'aider' },
       'gemini-flash-3-5': { inputTokens: 3850, outputTokens: 1450, source: 'aider' },
       'gemini-flash-3': { inputTokens: 3800, outputTokens: 1200, source: 'aider' },
-      'deepseek-v3': { inputTokens: 4000, outputTokens: 1850, source: 'aider' }
+      'deepseek-v4-pro': { inputTokens: 4000, outputTokens: 1850, source: 'aider' }
     }
   },
   'security-audit': {
@@ -167,7 +180,7 @@ export const TASK_CATEGORIES: Record<string, TaskCategory> = {
       'gemini-pro-3-1': { inputTokens: 14500, outputTokens: 3500, source: 'agentnoah-owasp' },
       'gemini-flash-3-5': { inputTokens: 12800, outputTokens: 2500, source: 'agentnoah-owasp' },
       'gemini-flash-3': { inputTokens: 12500, outputTokens: 2000, source: 'agentnoah-owasp' },
-      'deepseek-v3': { inputTokens: 13000, outputTokens: 3300, source: 'agentnoah-owasp' }
+      'deepseek-v4-pro': { inputTokens: 13000, outputTokens: 3300, source: 'agentnoah-owasp' }
     }
   },
   'pr-summary': {
@@ -183,7 +196,7 @@ export const TASK_CATEGORIES: Record<string, TaskCategory> = {
       'gemini-pro-3-1': { inputTokens: 20000, outputTokens: 1200, source: 'aider' },
       'gemini-flash-3-5': { inputTokens: 15500, outputTokens: 750, source: 'aider' },
       'gemini-flash-3': { inputTokens: 15000, outputTokens: 600, source: 'aider' },
-      'deepseek-v3': { inputTokens: 16500, outputTokens: 900, source: 'aider' }
+      'deepseek-v4-pro': { inputTokens: 16500, outputTokens: 900, source: 'aider' }
     }
   },
   'generate-docs': {
@@ -199,7 +212,7 @@ export const TASK_CATEGORIES: Record<string, TaskCategory> = {
       'gemini-pro-3-1': { inputTokens: 9200, outputTokens: 3000, source: 'aider' },
       'gemini-flash-3-5': { inputTokens: 8200, outputTokens: 2100, source: 'aider' },
       'gemini-flash-3': { inputTokens: 8000, outputTokens: 1700, source: 'aider' },
-      'deepseek-v3': { inputTokens: 8400, outputTokens: 2700, source: 'aider' }
+      'deepseek-v4-pro': { inputTokens: 8400, outputTokens: 2700, source: 'aider' }
     }
   },
   'debug-stack': {
@@ -215,7 +228,7 @@ export const TASK_CATEGORIES: Record<string, TaskCategory> = {
       'gemini-pro-3-1': { inputTokens: 7500, outputTokens: 2600, source: 'aider' },
       'gemini-flash-3-5': { inputTokens: 6200, outputTokens: 1750, source: 'aider' },
       'gemini-flash-3': { inputTokens: 6000, outputTokens: 1400, source: 'aider' },
-      'deepseek-v3': { inputTokens: 6400, outputTokens: 2300, source: 'aider' }
+      'deepseek-v4-pro': { inputTokens: 6400, outputTokens: 2300, source: 'aider' }
     }
   },
   'refactor-func': {
@@ -231,7 +244,7 @@ export const TASK_CATEGORIES: Record<string, TaskCategory> = {
       'gemini-pro-3-1': { inputTokens: 6200, outputTokens: 2300, source: 'aider' },
       'gemini-flash-3-5': { inputTokens: 5200, outputTokens: 1500, source: 'aider' },
       'gemini-flash-3': { inputTokens: 5000, outputTokens: 1200, source: 'aider' },
-      'deepseek-v3': { inputTokens: 5400, outputTokens: 2000, source: 'aider' }
+      'deepseek-v4-pro': { inputTokens: 5400, outputTokens: 2000, source: 'aider' }
     }
   }
 };

@@ -80,7 +80,7 @@ Pick the type of work you want your agent LLM to do. 6 categories available:
 | Anthropic | Claude 4.7 Opus | Claude 4.6 Sonnet | Claude 4.5 Haiku |
 | OpenAI | GPT-4o | o3-mini | GPT-4o mini |
 | Google | Gemini 3.1 Pro | Gemini 3.5 Flash | Gemini 3 Flash |
-| Open-weight | — | DeepSeek V3 | — |
+| Open-weight | — | DeepSeek V4 Pro | — |
 
 All 10 are selected by default. Click a chip to toggle a model on/off.
 
@@ -127,7 +127,7 @@ Every cell in the calculator has a source badge. We never invent numbers.
 | [Anthropic pricing](https://www.anthropic.com/pricing) | Claude 4.7 Opus, 4.6 Sonnet, 4.5 Haiku per-Mtok prices | 2026-05-23 |
 | [OpenAI pricing](https://openai.com/pricing) | GPT-4o, GPT-4o mini, o3-mini per-Mtok prices | 2026-05-23 |
 | [Google Gemini pricing](https://ai.google.dev/pricing) | Gemini 3.1 Pro, 3.5 Flash, 3 Flash per-Mtok prices | 2026-05-23 |
-| [DeepSeek pricing](https://api-docs.deepseek.com/pricing) | DeepSeek V3 per-Mtok prices | 2026-05-23 |
+| [DeepSeek pricing](https://api-docs.deepseek.com/quick_start/pricing) | DeepSeek V4 Pro per-Mtok prices (note: currently 75% discounted) | 2026-05-25 |
 | [Aider Leaderboard](https://aider.chat/docs/leaderboards/) | Quality scores for Anthropic + OpenAI models (coding tasks) | 2026-05-23 |
 | [LMSys Arena](https://chat.lmsys.org/?arena) | Quality scores for Google + DeepSeek models (general capability) | 2026-05-23 |
 | [AgentNoah OWASP K=3 benchmark](https://agentnoah.dev/blog/3-model-byol-evidence) | Quality scores for the **security-audit** task specifically (overrides the general scores above) | 2026-05-23 |

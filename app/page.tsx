@@ -473,6 +473,25 @@ export default function Home() {
           </a>
         </div>
       </footer>
+
+      {/* Sticky floating CTA — added 2026-05-25 to improve funnel conversion
+          from calculator visitors → AgentNoah trial signup. Yesterday's
+          Reddit BYOL post got ~2K views but 0 conversions; this adds an
+          explicit, persistent next-action signal that scrolls with the
+          reader. Links directly to /login (GitHub OAuth → trial). */}
+      <a
+        href="https://agentnoah.dev/login"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-emerald-500 hover:bg-emerald-400 text-black rounded-2xl font-bold text-xs sm:text-sm shadow-2xl shadow-emerald-500/40 hover:shadow-emerald-400/60 transition-all duration-200 hover:scale-[1.03]"
+        aria-label="Try AgentNoah free for 14 days"
+      >
+        <Sparkles className="h-4 w-4 shrink-0" />
+        <span>Try AgentNoah free</span>
+        <span className="hidden sm:inline text-black/70 font-medium">
+          · 14d trial
+        </span>
+      </a>
     </div>
   );
 }

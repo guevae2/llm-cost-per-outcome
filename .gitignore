@@ -40,3 +40,13 @@ build/
 # Local env files
 .env*.local
 .env
+
+# Pillar 3 benchmark / research scratch — NOT part of the calculator app.
+# Backed up privately in agentnoah/research/pillar3/. Do NOT publish (audit methodology = moat).
+# These files stay on disk + fully usable; git just won't track or publish them.
+*.py
+__pycache__/
+*_v22_chunk*.json
+k3_*_log.txt
+/deep
+/deepseek

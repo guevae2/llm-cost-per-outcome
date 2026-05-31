@@ -44,9 +44,15 @@ build/
 # Pillar 3 benchmark / research scratch — NOT part of the calculator app.
 # Backed up privately in agentnoah/research/pillar3/. Do NOT publish (audit methodology = moat).
 # These files stay on disk + fully usable; git just won't track or publish them.
+# (gitignore only affects UNtracked files — the committed calculator app is unaffected.)
 *.py
 __pycache__/
-*_v22_chunk*.json
-k3_*_log.txt
+*_chunk*.json
+*_seed*.json
+*_RUN*.json
+*.out
+deepseek_*
+k3_*
+seed_probe/
 /deep
 /deepseek
